@@ -8,7 +8,7 @@ from flask_cors import CORS
 from .database.models import db_drop_and_create_all, setup_db, Drink
 from .auth.auth import AuthError, requires_auth
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='../../frontend/www', static_url_path='')
 setup_db(app)
 CORS(app)
 
@@ -21,6 +21,11 @@ CORS(app)
 # db_drop_and_create_all()
 
 # ROUTES
+
+@app.route('/')
+    def serve():
+        return send_from_directory(app.static_folder, 'index.html')
+
 '''
 @TODO implement endpoint
     GET /drinks
