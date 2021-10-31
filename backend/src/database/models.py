@@ -5,7 +5,14 @@ import json
 
 database_filename = "database.db"
 project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
+
+#Local Dev db path
+# database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
+
+# Heroku db path
+database_path = os.getenv("DATABASE_URL")
+if database_path.startswith("postgres://"):
+    database_path = database_path.replace("postgres://", "postgresql://", 1)
 
 db = SQLAlchemy()
 
