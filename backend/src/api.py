@@ -23,8 +23,8 @@ CORS(app)
 # ROUTES
 
 @app.route('/')
-    def serve():
-        return send_from_directory(app.static_folder, 'index.html')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
 '''
 @TODO implement endpoint
